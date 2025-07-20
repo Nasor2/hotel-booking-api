@@ -17,7 +17,7 @@ public class Room {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "name",  nullable = false)
+    @Column(name = "name",  unique = true, nullable = false)
     @Size( max = 255)
     @NotBlank
     private String name;
