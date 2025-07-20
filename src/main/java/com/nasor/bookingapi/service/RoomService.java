@@ -7,6 +7,7 @@ import com.nasor.bookingapi.mapper.RoomDtoMapper;
 import com.nasor.bookingapi.model.Room;
 import com.nasor.bookingapi.repository.RoomRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -22,6 +23,7 @@ public class RoomService {
         this.roomDtoMapper = roomDtoMapper;
     }
 
+    @Transactional(readOnly = true)
     public List<RoomDto> findAll() {
         return roomRepository
                 .findAll()
@@ -30,6 +32,7 @@ public class RoomService {
                 .collect(Collectors.toList());
     }
 
+    @Transactional(readOnly = true)
     public RoomDto findById(Long id) {
         Optional<Room> room = roomRepository.findById(id);
         if (room.isEmpty()) {
@@ -38,6 +41,7 @@ public class RoomService {
         return roomDtoMapper.apply(room.get());
     }
 
+    @Transactional
     public RoomDto create(RoomRequestRegistration requestRoom) {
         if (roomRepository.findByNumber(requestRoom.number()).isPresent()){
             throw new IllegalArgumentException("Room with name " + requestRoom.number() + " already exists");
@@ -52,6 +56,7 @@ public class RoomService {
         return roomDtoMapper.apply(room);
     }
 
+    @Transactional
     public RoomDto update(Long id, RoomRequestRegistration requestRoom) {
         Optional<Room> room = roomRepository.findById(id);
         if (room.isEmpty()) {
@@ -68,6 +73,7 @@ public class RoomService {
         return roomDtoMapper.apply(roomToUpdate);
     }
 
+    @Transactional
     public void delete(Long id) {
         if(roomRepository.findById(id).isEmpty()){
             throw new  ResourceNotFound("Room with id " + id + " not found");

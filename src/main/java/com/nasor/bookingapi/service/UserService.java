@@ -7,6 +7,7 @@ import com.nasor.bookingapi.mapper.UserDtoMapper;
 import com.nasor.bookingapi.model.User;
 import com.nasor.bookingapi.repository.UserRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -23,6 +24,7 @@ public class UserService {
         this.userDtoMapper = userDtoMapper;
     }
 
+    @Transactional(readOnly = true)
     public List<UserDto> findAll() {
         return userRepository
                 .findAll()
@@ -31,6 +33,7 @@ public class UserService {
                 .collect(Collectors.toList());
     }
 
+    @Transactional(readOnly = true)
     public UserDto findById(Long id) {
         Optional<User> user = userRepository.findById(id);
         if (user.isEmpty()) {
@@ -39,6 +42,7 @@ public class UserService {
         return userDtoMapper.apply(user.get());
     }
 
+    @Transactional
     public UserDto create(UserRequestRegistration  userRequest) {
 
         if (userRepository.findByEmail(userRequest.email()).isPresent()) {
@@ -55,6 +59,7 @@ public class UserService {
         return userDtoMapper.apply(userRepository.save(newUser));
     }
 
+    @Transactional
     public UserDto update(Long id, UserRequestRegistration  userRequest) {
         Optional<User> existingUser = userRepository.findById(id);
         if (existingUser.isEmpty()) {
@@ -70,6 +75,7 @@ public class UserService {
         return userDtoMapper.apply(userRepository.save(user));
     }
 
+    @Transactional
     public void delete(Long id) {
         if (userRepository.findById(id).isEmpty()) {
             throw new ResourceNotFound("User with id " + id + " not found");
