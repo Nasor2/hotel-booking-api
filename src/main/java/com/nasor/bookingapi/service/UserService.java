@@ -1,7 +1,7 @@
 package com.nasor.bookingapi.service;
 
-import com.nasor.bookingapi.dto.UserDto;
-import com.nasor.bookingapi.dto.UserRequestRegistration;
+import com.nasor.bookingapi.dto.user.UserDto;
+import com.nasor.bookingapi.dto.user.UserRequestRegistration;
 import com.nasor.bookingapi.exception.ResourceNotFound;
 import com.nasor.bookingapi.mapper.UserDtoMapper;
 import com.nasor.bookingapi.model.User;
@@ -35,14 +35,6 @@ public class UserService {
         Optional<User> user = userRepository.findById(id);
         if (user.isEmpty()) {
             throw new ResourceNotFound("User with id " + id + " not found");
-        }
-        return userDtoMapper.apply(user.get());
-    }
-
-    public UserDto findByEmail(String email) {
-        Optional<User> user = userRepository.findByEmail(email);
-        if (user.isEmpty()) {
-            throw new ResourceNotFound("User with email " + email + " not found");
         }
         return userDtoMapper.apply(user.get());
     }

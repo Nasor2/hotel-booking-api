@@ -33,7 +33,7 @@ public class User {
     @Size(max = 255)
     private String address;
 
-    @Column(name = "email", nullable = false)
+    @Column(name = "email", unique = true, nullable = false)
     @NotBlank
     @Size(max = 255)
     @Email

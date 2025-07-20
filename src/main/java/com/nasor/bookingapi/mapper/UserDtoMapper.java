@@ -1,6 +1,6 @@
 package com.nasor.bookingapi.mapper;
 
-import com.nasor.bookingapi.dto.UserDto;
+import com.nasor.bookingapi.dto.user.UserDto;
 import com.nasor.bookingapi.model.User;
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package com.nasor.bookingapi.dto;
+package com.nasor.bookingapi.dto.user;
 
 public record UserRequestRegistration(String firstName,
                                       String lastName,

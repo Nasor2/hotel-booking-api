@@ -1,7 +1,7 @@
 package com.nasor.bookingapi.controller;
 
-import com.nasor.bookingapi.dto.UserDto;
-import com.nasor.bookingapi.dto.UserRequestRegistration;
+import com.nasor.bookingapi.dto.user.UserDto;
+import com.nasor.bookingapi.dto.user.UserRequestRegistration;
 import com.nasor.bookingapi.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
