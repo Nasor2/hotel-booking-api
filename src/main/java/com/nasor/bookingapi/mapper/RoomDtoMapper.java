@@ -18,7 +18,7 @@ public class RoomDtoMapper implements Function<Room, RoomDto> {
 
         return new RoomDto(
                 room.getId(),
-                room.getName(),
+                room.getNumber(),
                 roomTypeDto,
                 room.getPricePerNight());
     }

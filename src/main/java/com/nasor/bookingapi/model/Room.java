@@ -17,10 +17,10 @@ public class Room {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "name",  unique = true, nullable = false)
+    @Column(name = "number",  unique = true, nullable = false)
     @Size( max = 255)
     @NotBlank
-    private String name;
+    private String number;
 
     @Column(name="room_category", nullable = false)
     @Enumerated(EnumType.STRING)

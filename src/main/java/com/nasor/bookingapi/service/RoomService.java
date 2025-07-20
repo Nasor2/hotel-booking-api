@@ -39,11 +39,11 @@ public class RoomService {
     }
 
     public RoomDto create(RoomRequestRegistration requestRoom) {
-        if (roomRepository.findByName(requestRoom.name()).isPresent()){
-            throw new IllegalArgumentException("Room with name " + requestRoom.name() + " already exists");
+        if (roomRepository.findByNumber(requestRoom.number()).isPresent()){
+            throw new IllegalArgumentException("Room with name " + requestRoom.number() + " already exists");
         }
         Room room = new Room();
-        room.setName(requestRoom.name());
+        room.setNumber(requestRoom.number());
         room.setType(requestRoom.roomType());
         room.setPricePerNight(requestRoom.pricePerNight());
 
@@ -59,7 +59,7 @@ public class RoomService {
         }
 
         Room roomToUpdate = room.get();
-        roomToUpdate.setName(requestRoom.name());
+        roomToUpdate.setNumber(requestRoom.number());
         roomToUpdate.setType(requestRoom.roomType());
         roomToUpdate.setPricePerNight(requestRoom.pricePerNight());
 

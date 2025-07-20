@@ -13,7 +13,7 @@ CREATE TABLE app_user (
 -- Room Entity
 CREATE TABLE room (
                       id BIGSERIAL PRIMARY KEY,
-                      name VARCHAR(255) UNIQUE NOT NULL,
+                      number VARCHAR(255) UNIQUE NOT NULL,
                       room_category VARCHAR(255) NOT NULL,
                       price_per_night DOUBLE PRECISION NOT NULL
 );
